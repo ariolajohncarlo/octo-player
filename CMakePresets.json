@@ -1,0 +1,45 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired":
+    {
+        "major": 3,
+        "minor": 23,
+        "patch": 0
+    },
+    "configurePresets":
+    [
+        {
+            "name": "linux-debug",
+            "displayName": "Linux Debug",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        }
+    ],
+    "buildPresets":
+    [
+        {
+            "name": "linux-debug",
+            "configurePreset": "linux-debug"
+        }
+    ],
+    "testPresets":
+    [
+        {
+            "name": "linux-debug",
+            "configurePreset": "linux-debug",
+            "output": {"verbosity": "verbose"},
+            "environment":
+            {
+                "GTEST_COLOR": "1"
+            }
+        }
+    ]
+}
