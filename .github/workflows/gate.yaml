@@ -1,0 +1,29 @@
+name: Commit Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    name: Build package
+    runs-on: ubuntu-latest
+
+    env:
+        PRESET: linux-debug
+
+    steps:
+      - name: Setup Repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install g++ cmake qt6-base-dev
+
+      - name: Configure CMake
+        run: cmake --preset ${{ env.PRESET }}
+
+      - name: Build
+        run: cmake --build --preset ${{ env.PRESET }}
