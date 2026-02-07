@@ -1,16 +1,14 @@
-#include <iostream>
+#include "MainWindow.h"
+
 #include <QApplication>
 #include <QMainWindow>
 
 
-class MainWindow : public QMainWindow
-{
-};
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    MainWindow w;
+
+    gui::MainWindow w;
     w.show();
 
     return app.exec();
